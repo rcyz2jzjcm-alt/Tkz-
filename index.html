@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>SimpleD.</title>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+  <body>
+    <!--HEADER-->
+    <header>
+      <!--LOGO-->
+
+      <a href="index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100">
+          <path
+            d="M12 12 H55
+                     C94 12 108 29 108 50
+                     C108 73 91 88 55 88
+                     H12 Z
+                     M34 34 V66 H55
+                     C74 66 82 60 82 50
+                     C82 40 74 34 55 34 Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+          <circle cx="108" cy="85" r="6" fill="currentColor" />
+        </svg>
+      </a>
+      <div class="carro-3d" id="carro3d"></div>
+
+      <!--NAVEGAÇÃO-->
+      <nav>
+        <ul>
+          <li>
+            <a href="#inicio"
+              ><img src="assets/SVG/house.svg" alt="" />Início</a
+            >
+          </li>
+          <li>
+            <a href="#projetos"
+              ><img
+                src="assets/SVG/layout-grid.svg"
+                alt=""
+              />Projetos</a
+            >
+          </li>
+          <li>
+            <a href="#comunidade"
+              ><img
+                src="assets/SVG/users-round.svg"
+                alt=""
+              />Comunidade</a
+            >
+          </li>
+          <li class="tema-menu-item">
+            <button class="tema-toggle" type="button" aria-label="Ativar modo escuro" aria-pressed="false" title="Ativar modo escuro">
+              <span aria-hidden="true">☾</span>
+              <span class="tema-label">Modo escuro</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!--HAMBURGUER-->
+      <button class="menu-hamburguer" type="button" aria-label="Abrir menu">
+        <img src="assets/SVG/menu.svg" alt="" />
+      </button>
+    </header>
+
+    <!--SECTION 1-->
+
+    <section id="inicio">
+      <div class="secao1">
+        <div class="secao-tudo">
+          <div class="secao-part1">
+            <h2>
+              <div></div>
+              BEM-VINDO AO MEU ESPAÇO
+            </h2>
+            <h1>
+              Mais que um espaço. <br /><span class="destaque"
+                >Uma comunidade. <i class="linha-decorativa"></i
+              ></span>
+            </h1>
+            <p>
+              Um lugar para compartilhar ideias, <br />desenvolver projetos e
+              conectar pessoas <br />com os mesmos interesses.
+            </p>
+          </div>
+
+          <div class="secao-part2">
+            <button class="discord-secao1">
+              <img src="assets/SVG/discord.svg" alt="" />Entrar na
+              comunidade <img src="assets/SVG/seta-direita.svg" alt="" />
+            </button>
+            <button class="projetos-secao1">
+              <img src="assets/SVG/box.svg" alt="" />Conheça os projetos
+            </button>
+          </div>
+
+          <div class="adicional-img">
+            <img src="assets/Adicionais/fundo.svg" alt="Ilustração de projetos de desenvolvimento, design e jogos" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SEÇÃO 2 -->
+    <section>
+      <div class="secao-tudo2">
+        <div class="secao2-part1" id="comunidade">
+          <div class="card">
+            <h2><img src="assets/SVG/discord.svg" alt="" />03 ── COMUNIDADE</h2>
+            <h1>
+              Faça parte da <br />
+              nossa <strong>comunidade.</strong>
+            </h1>
+            <p>
+              Um lugar para conhecer pessoas, compartilhar <br />experiências e
+              construir novas amizades.
+            </p>
+            <button>
+              <img src="assets/SVG/discord.svg" alt="" />Entrar no Discord
+              <img src="assets/SVG/seta-direita.svg" alt="" />
+            </button>
+          </div>
+          <div class="discord-secao">
+            <img src="assets/SVG/discord.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="secao2-part2" id="projetos">
+          <div class="aba-destaque-1">
+            <h2><img src="assets/SVG/folder.svg" alt="" />02 MEUS PROJETOS <img class="seta-destaque" src="assets/SVG/seta-direita.svg" alt=""></h2>
+            <h1>Projetos em <strong>destaque.</strong></h1>
+            <p>
+              Uma seleção de projetos, experiências e outras coisas que venho
+              desenvolvendo.
+            </p>
+          </div>
+
+          <div class="aba-destaque">
+            <div class="destaque1">
+              <img src="assets/SVG/code-xml.svg" alt="" />
+              <h2>Desenvolvimento</h2>
+              <p>Código e tecnologia</p>
+            </div>
+
+            <div class="destaque2">
+              <img src="assets/SVG/palette.svg" alt="" />
+              <h2>Design</h2>
+              <p>Criação de arte</p>
+            </div>
+
+            <div class="destaque3">
+              <img src="assets/SVG/gamepad-2.svg" alt="" />
+              <h2>Jogos</h2>
+              <p>Projetos e ideias</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const temaBotao = document.querySelector('.tema-toggle');
+      const temaSalvo = localStorage.getItem('simpled-theme');
+      const temaInicial = temaSalvo === 'dark' ? 'dark' : 'light';
+
+      function aplicarTema(tema) {
+        document.documentElement.dataset.theme = tema;
+        const escuro = tema === 'dark';
+        temaBotao.setAttribute('aria-pressed', String(escuro));
+        temaBotao.setAttribute('aria-label', escuro ? 'Ativar modo claro' : 'Ativar modo escuro');
+        temaBotao.title = escuro ? 'Ativar modo claro' : 'Ativar modo escuro';
+        temaBotao.querySelector('span').textContent = escuro ? '☀' : '☾';
+        temaBotao.querySelector('.tema-label').textContent = escuro ? 'Modo claro' : 'Modo escuro';
+        window.dispatchEvent(new CustomEvent('simpled-theme-change', { detail: { theme: tema } }));
+      }
+
+      aplicarTema(temaInicial);
+      temaBotao.addEventListener('click', () => {
+        const proximoTema = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('simpled-theme', proximoTema);
+        aplicarTema(proximoTema);
+      });
+    </script>
+    <script>
+      const menuBotao = document.querySelector('.menu-hamburguer');
+      const navegacao = document.querySelector('header nav');
+
+      menuBotao.addEventListener('click', () => {
+        const aberto = navegacao.classList.toggle('is-open');
+        menuBotao.setAttribute('aria-expanded', String(aberto));
+        menuBotao.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+      });
+
+      navegacao.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navegacao.classList.remove('is-open');
+          menuBotao.setAttribute('aria-expanded', 'false');
+          menuBotao.setAttribute('aria-label', 'Abrir menu');
+        });
+      });
+    </script>
+    <script type="module" src="carro3d.js"></script>
+  </body>
+</html>
